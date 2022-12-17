@@ -46,6 +46,12 @@ function setupUpgrades() {
                 playerStats.damage -= 0.04;
             }
         }, 10000, 175),
+        new Upgrade("Laser Rifle", "Epic Gun", "lightblue", "A laser rifle", pistolimg, function() {
+            guns.push(new Rifle(guns.length));
+            if (charactertype == "multitasker") {
+                playerStats.damage -= 0.04;
+            }
+        }, 10000, 1000),
         new Upgrade("Shotgun", "Basic Gun", "lightgrey", "A Basic Shotgun", shotgunimg, function() {
             guns.push(new Shotgun(guns.length));
             if (charactertype == "multitasker") {

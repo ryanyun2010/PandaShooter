@@ -3,6 +3,14 @@ class Pistol extends Gun {
         super("Pistol", 20, 1, position, 20, pistolimg, 40, 19);
     }
 }
+class Rifle extends Gun {
+    constructor(position) {
+        super("Rifle", 1, 0.07, position, 20, pistolimg, 40, 19);
+    }
+    shoot() {
+        game.data.push(new RifleProjectile(10, 100, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle)));
+    }
+}
 class WaterGun extends Gun {
     constructor(position) {
         super("WaterGun", 60, 0.1, position, 20, pistolimg, 40, 19);

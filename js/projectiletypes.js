@@ -110,3 +110,38 @@ class MeleeWeaponProjectile extends Projectile {
     }
 
 }
+class RifleProjectile extends Projectile {
+    constructor(size, lifespan, speed, damage, x, y, angle) {
+        super(size, lifespan, speed, damage, x, y, angle);
+    }
+    draw(x, y) {
+        push();
+        translate(x, y);
+        rotate(this.angle + Math.PI);
+        noStroke();
+        fill("red");
+        rect(0, 0, 30, 10);
+        pop();
+    }
+    checkCollision() {
+        for (var enemy of enemies) {
+            if (getDistance(this.x, this.y, enemy.x, enemy.y) < (this.w * 0.5 + enemy.w * 0.75)) {
+                enemy.health -= this.damage;
+                if (healthbar.currenthealth + this.damage * playerStats.lifesteal < healthbar.maxhealth) {
+                    healthbar.currenthealth += this.damage * playerStats.lifesteal;
+                } else {
+                    healthbar.currenthealth = healthbar.maxhealth;
+                }
+                enemy.damagedframesleft = 10;
+                if (enemy.health <= 0) {
+                    enemieskilled++;
+                    game.data.push(new Collectable(enemy.x, enemy.y, enemy.value))
+                    game.data.splice(game.data.indexOf(enemy), 1)
+                    enemies.splice(enemies.indexOf(enemy), 1)
+                }
+                return;
+            }
+        }
+    }
+
+}
