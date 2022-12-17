@@ -29,7 +29,7 @@ class BombProjectile extends Projectile {
 }
 class WaterGunProjectile extends Projectile {
     constructor(lifespan, speed, damage, x, y, angle) {
-        super(10, lifespan, speed, damage, x, y, angle);
+        super(10, lifespan, speed, damage, x, y, angle, bubbleimg);
         this.lifespan = lifespan;
     }
     move() {
@@ -40,7 +40,7 @@ class WaterGunProjectile extends Projectile {
         this.lifespan--;
         if (this.lifespan < 1) {
             dealAoeDamage(this.x, this.y, 200, this.damage);
-            game.data.push(new WaterEffect(this.x, this.y, 200));
+            game.data.push(new WaterEffect(this.x, this.y, 200, this.damage));
             game.data.splice(game.data.indexOf(this), 1);
         }
         this.checkCollision();
@@ -49,7 +49,7 @@ class WaterGunProjectile extends Projectile {
         for (var enemy of enemies) {
             if (getDistance(this.x, this.y, enemy.x, enemy.y) < (this.w * 0.5 + this.speed + enemy.w * 0.75)) {
                 dealAoeDamage(this.x, this.y, 200, this.damage);
-                game.data.push(new WaterEffect(this.x, this.y, 200));
+                game.data.push(new WaterEffect(this.x, this.y, 200, this.damage));
                 game.data.splice(game.data.indexOf(this), 1);
                 return;
             }
@@ -58,19 +58,24 @@ class WaterGunProjectile extends Projectile {
 }
 
 class WaterEffect {
-    constructor(x, y, range) {
+    constructor(x, y, range, damage) {
         this.x = x;
         this.y = y;
         this.range = range;
         this.lifespan = 100;
+        if (charactertype == "swimmer") {
+            this.lifespan = 200;
+        }
+        this.damage = damage;
     }
 
     draw(x, y) {
         this.lifespan--;
         imageMode(CENTER);
-        fill("blue");
-       ellipse(x,y,this.range,this.range);
+        fill(0, 255, 255, 100);
+        ellipse(x, y, this.range, this.range);
         imageMode(CORNER);
+        dealAoeDamage(this.x, this.y, this.range, this.damage);
         if (this.lifespan < 1) {
             game.data.splice(game.data.indexOf(this), 1);
         }

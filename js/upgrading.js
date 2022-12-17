@@ -88,7 +88,7 @@ function setupUpgrades() {
     ]
 
     pistolupgrades = [
-        new Upgrade("Water-Gun", "Advanced Gun Upgrade", "green", "Shoots bubbles that pop, dealing AOE damage", pistolimg, function() {
+        new Upgrade("Water-Gun", "Epic Gun Upgrade", "green", "Upgrades your Pistol into a Water Gun that shoots bubbles that pop, leaving puddles that deal damage to those inside", pistolimg, function() {
             var t = "N/A";
             for (var gun of guns) {
                 console.log(gun);
@@ -100,7 +100,7 @@ function setupUpgrades() {
             if (t != "N/A") {
                 guns[t] = new WaterGun(t);
             }
-        }, 10000, 500)
+        }, 10000, 1000)
     ]
 
 
@@ -357,28 +357,12 @@ function rerollupgrades() {
         }
     }
     if (pistolowned) {
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-        // possibleupgrades.push(pistolupgrades[0]);
-
+        possibleupgrades.push(pistolupgrades[0]);
+        possibleupgrades.push(pistolupgrades[0]);
+        possibleupgrades.push(pistolupgrades[0]);
+        possibleupgrades.push(pistolupgrades[0]);
+        possibleupgrades.push(pistolupgrades[0]);
+        possibleupgrades.push(pistolupgrades[0]);
     }
     console.log(possibleupgrades);
 

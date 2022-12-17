@@ -59,6 +59,7 @@ var charactertype = "N/A";
 var assassindaggerimg;
 var upgradeimgs = {};
 var characterimgs = {};
+var bubbleimg;
 
 function preload() {
     backgroundImg = loadImage("img/background.png");
@@ -133,6 +134,7 @@ function preload() {
     characterimgs.multi = loadImage("img/multi.png");
     upgradeimgs.chestplate = loadImage("img/upgrades/chestplate.png");
     upgradeimgs.fastershots = loadImage("img/upgrades/fastershots.png");
+    bubbleimg = loadImage("img/bubble.png");
     setupUpgrades();
 
 }
@@ -228,6 +230,15 @@ function setup() {
         playerStats.dodge = -0.2;
         charactertype = "entrepreneur"
     }, characterimgs.rich));
+    characters.push(new Character("Swimmer", "really likes water, starts with a Water-Gun, -20% armor, -50% damage, Water Gun Puddles stay for 100% longer, -30% attackspeed, -3 health", function() {
+        guns = [new WaterGun(0)];
+        playerStats.armor -= 0.2;
+        playerStats.damage -= 0.5;
+        playerStats.attackdelay -= 0.3;
+        healthbar.currenthealth = 7;
+        healthbar.maxhealth = 7;
+        charactertype = "swimmer"
+    }, bubbleimg));
 
 
     createCanvas(1000, 700);
@@ -240,7 +251,7 @@ function setup() {
 function draw() {
 
     for (var p of game.data) {
-        if (p instanceof Projectile || p instanceof BombProjectile || p instanceof EnemyProjectile) {
+        if (p instanceof Projectile || p instanceof BombProjectile || p instanceof EnemyProjectile || p instanceof WaterGunProjectile || p instanceof BombEffect || p instanceof WaterEffect) {
             if (p.x < game.x || p.y < game.y || p.x > game.x + game.sw || p.y > game.y + game.sh) {
                 game.data.splice(game.data.indexOf(p), 1);
             }

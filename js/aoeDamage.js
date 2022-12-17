@@ -1,7 +1,7 @@
 function dealAoeDamage(x, y, range, damage) {
     var temp;
     for (var e of enemies) {
-        if (getDistance(x, y, e.x, e.y) < range) {
+        if (getDistance(x, y, e.x, e.y) < range / 2) {
             e.health -= damage;
             e.damagedframesleft = 10;
             if ((healthbar.currenthealth + (damage * playerStats.lifesteal * playerStats.explodinglifesteal)) < healthbar.maxhealth) {

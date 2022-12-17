@@ -5,10 +5,10 @@ class Pistol extends Gun {
 }
 class WaterGun extends Gun {
     constructor(position) {
-        super("WaterGun", 20, 1, position, 20, pistolimg, 40, 19);
+        super("WaterGun", 60, 0.1, position, 20, pistolimg, 40, 19);
     }
     shoot() {
-            game.data.push(new WaterGunProjectile(30, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle)));
+        game.data.push(new WaterGunProjectile(getDistance(this.x, this.y, mouseX, mouseY) / (this.speed * playerStats.bulletspeed), this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle)));
     }
 }
 class SMG extends Gun {
@@ -17,9 +17,9 @@ class SMG extends Gun {
     }
     shoot() {
         if (playerStats.exploding && Math.random() < 0.25) {
-            game.data.push(new BombProjectile(30, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle) + random(-0.15,0.15)));
+            game.data.push(new BombProjectile(30, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle) + random(-0.15, 0.15)));
         } else {
-            game.data.push(new Projectile(10, 30, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle) + random(-0.15,0.15)));
+            game.data.push(new Projectile(10, 30, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle) + random(-0.15, 0.15)));
         }
     }
 }
@@ -29,9 +29,9 @@ class Minigun extends Gun {
     }
     shoot() {
         if (playerStats.exploding && Math.random() < 0.25) {
-            game.data.push(new BombProjectile(30, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle) + random(-0.08,0.08)));
+            game.data.push(new BombProjectile(30, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle) + random(-0.08, 0.08)));
         } else {
-            game.data.push(new Projectile(10, 30, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle) + random(-0.08,0.08)));
+            game.data.push(new Projectile(10, 30, this.speed * playerStats.bulletspeed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle) + random(-0.08, 0.08)));
         }
     }
 }
@@ -113,11 +113,11 @@ class Flamethrower extends Gun {
     }
 }
 class MeleeWeapon extends Gun {
-    constructor(name,attackdelay,damage,position,speed,img,w,h,lifespan){
-        super(name,attackdelay,damage,position,speed,img,w,h);
+    constructor(name, attackdelay, damage, position, speed, img, w, h, lifespan) {
+        super(name, attackdelay, damage, position, speed, img, w, h);
         this.lifespan = lifespan;
     }
-    draw(){
+    draw() {
         this.canAttackIn--;
         if (this.position == 0) {
 
@@ -153,20 +153,20 @@ class MeleeWeapon extends Gun {
         translate(this.x, this.y)
         rotate(this.angle)
         imageMode(CORNER);
-        image(this.img,0, 0, this.w, this.h);
+        image(this.img, 0, 0, this.w, this.h);
         pop();
     }
     shoot() {
         game.data.push(new MeleeWeaponProjectile(this.h * 1.5, this.lifespan, this.speed, this.damage * playerStats.damage, this.x + game.x, this.y + game.y, simplifyAngle(this.angle)));
     }
 }
-class KnightSword extends MeleeWeapon{
-    constructor(position){
-        super("Knight Sword",1,0.07,position,40,knightswordimg,200,50,4);
+class KnightSword extends MeleeWeapon {
+    constructor(position) {
+        super("Knight Sword", 1, 0.07, position, 40, knightswordimg, 200, 50, 4);
     }
 }
-class AssassinDagger extends MeleeWeapon{
-    constructor(position){
-        super("Dagger",1,0.1,position, 40,assassindaggerimg,100,40,2);
+class AssassinDagger extends MeleeWeapon {
+    constructor(position) {
+        super("Dagger", 1, 0.1, position, 40, assassindaggerimg, 100, 40, 2);
     }
 }
