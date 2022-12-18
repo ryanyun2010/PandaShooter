@@ -3,6 +3,12 @@ var wavedamagemulti;
 function spawnEnemies() {
     wavehealthmulti = waveHealthMulti(wave);
     wavedamagemulti = waveDamageMulti(wave);
+    if (time > 3598) {
+        game.x = 1500;
+        game.y = 1600;
+        player.x = 500;
+        player.y = 350;
+    }
     if (wave == 1) {
         if (time % 90 == 0) {
             var xy = randomEnemyXY();

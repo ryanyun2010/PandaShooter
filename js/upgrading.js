@@ -145,6 +145,9 @@ function setupUpgrades() {
         new Upgrade("Faster Shots", "Basic Upgrade", "lightgrey", "Upgrade's your gun's attack speed by 8%", upgradeimgs.fastershots, function() {
             playerStats.attackdelay += 0.08;
         }, 10000, 50, 20),
+        new Upgrade("Turret", "Advanced Upgrade", "green", "Adds a turret to somewhere on the map that deals damage to enemies", turretimg, function() {
+            game.data.push(new Turret(2000 + random(-500, 500), 2000 + random(-500, 500)));
+        }, 10000, 300, 15),
         new Upgrade("Rapid Fire", "Advanced Upgrade", "green", "Upgrade's your gun's attack speed by 13% but 10% less armor", upgradeimgs.fastershots, function() {
             playerStats.attackdelay += 0.13;
             playerStats.armor -= 0.1;

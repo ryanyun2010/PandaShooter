@@ -62,6 +62,7 @@ var characterimgs = {};
 var bubbleimg;
 var deathimg;
 var winimg;
+var turretimg;
 
 function preload() {
     backgroundImg = loadImage("img/background.png");
@@ -118,6 +119,7 @@ function preload() {
     tank3img = loadImage("img/enemies/tankv3.png");
     sprayer2img = loadImage("img/enemies/sprayerv2.png");
     w20bossimg = loadImage("img/enemies/wave20boss.png");
+    turretimg = loadImage("img/turret.png");
 
     batFlashingImg = loadImage("img/enemies/flashing/bat.png");
     tankFlashingImg = loadImage("img/enemies/flashing/tank.png");
@@ -250,6 +252,7 @@ function setup() {
     for (var enemy of enemies) {
         game.data.push(enemy);
     }
+
 }
 
 function draw() {
@@ -262,7 +265,7 @@ function draw() {
     document.body.style.background = "#303030";
 
     for (var p of game.data) {
-        if (p instanceof Projectile || p instanceof BombProjectile || p instanceof EnemyProjectile || p instanceof WaterGunProjectile || p instanceof BombEffect || p instanceof WaterEffect) {
+        if (p instanceof Projectile || p instanceof BombProjectile || p instanceof EnemyProjectile || p instanceof WaterGunProjectile || p instanceof BombEffect || p instanceof WaterEffect || p instanceof TurretProjectile) {
             if (p.x < game.x || p.y < game.y || p.x > game.x + game.sw || p.y > game.y + game.sh) {
                 game.data.splice(game.data.indexOf(p), 1);
             }
