@@ -46,7 +46,7 @@ function setupUpgrades() {
                 playerStats.damage -= 0.04;
             }
         }, 10000, 175),
-        new Upgrade("Laser Rifle", "Epic Gun", "lightblue", "A laser rifle", pistolimg, function() {
+        new Upgrade("Laser Rifle", "Epic Gun", "lightblue", "A laser rifle", laserrifleimg, function() {
             guns.push(new Rifle(guns.length));
             if (charactertype == "multitasker") {
                 playerStats.damage -= 0.04;
@@ -94,7 +94,7 @@ function setupUpgrades() {
     ]
 
     pistolupgrades = [
-        new Upgrade("Water-Gun", "Epic Gun Upgrade", "green", "Upgrades your Pistol into a Water Gun that shoots bubbles that pop, leaving puddles that deal damage to those inside", pistolimg, function() {
+        new Upgrade("Water-Gun", "Epic Gun Upgrade", "green", "Upgrades your Pistol into a Water Gun that shoots bubbles that pop, leaving puddles that deal damage to those inside", watergunimg, function() {
             var t = "N/A";
             for (var gun of guns) {
                 console.log(gun);

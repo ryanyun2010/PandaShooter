@@ -63,6 +63,8 @@ var bubbleimg;
 var deathimg;
 var winimg;
 var turretimg;
+var watergunimg;
+var laserrifleimg;
 
 function preload() {
     backgroundImg = loadImage("img/background.png");
@@ -114,7 +116,9 @@ function preload() {
     knightswordimg = loadImage("img/knightsword.png");
     assassindaggerimg = loadImage("img/dagger.png");
     deathimg = loadImage("img/death.png");
-    winimg = loadImage("img/win.png")
+    winimg = loadImage("img/win.png");
+    watergunimg = loadImage("img/watergun.png");
+    laserrifleimg = loadImage("img/laserrifle.png");
 
     tank3img = loadImage("img/enemies/tankv3.png");
     sprayer2img = loadImage("img/enemies/sprayerv2.png");
@@ -245,8 +249,17 @@ function setup() {
         healthbar.maxhealth = 7;
         charactertype = "swimmer"
     }, bubbleimg));
-
-
+    var temp = document.createElement("div");
+    temp.style.position = "absolute";
+    temp.style.width = "1040px";
+    temp.style.height = "740px";
+    temp.style.background = "black";
+    temp.style.zIndex = "-100";
+    temp.style.borderRadius = "39px";
+    temp.style.left = ((window.innerWidth - 1000) / 2) - 60 + "px";
+    temp.style.top = ((window.innerHeight - 700) / 2) - 60 + "px";
+    temp.setAttribute("id", "borderobject");
+    document.body.appendChild(temp);
     createCanvas(1000, 700);
 
     for (var enemy of enemies) {
@@ -260,8 +273,12 @@ function draw() {
     document.getElementById("defaultCanvas0").style.display = "block";
     document.getElementById("defaultCanvas0").style.left = ((window.innerWidth - 1000) / 2) - 40 + "px";
     document.getElementById("defaultCanvas0").style.top = ((window.innerHeight - 700) / 2) - 40 + "px";
-    document.getElementById("defaultCanvas0").style.border = "20px solid black";
+    // document.getElementById("defaultCanvas0").style.border = "20px solid black";
     document.getElementById("defaultCanvas0").style.borderRadius = "30px";
+
+    document.getElementById("borderobject").style.left = ((window.innerWidth - 1000) / 2) - 60 + "px";
+    document.getElementById("borderobject").style.top = ((window.innerHeight - 700) / 2) - 60 + "px";
+
     document.body.style.background = "#303030";
 
     for (var p of game.data) {
