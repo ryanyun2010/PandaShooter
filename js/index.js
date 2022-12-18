@@ -60,6 +60,8 @@ var assassindaggerimg;
 var upgradeimgs = {};
 var characterimgs = {};
 var bubbleimg;
+var deathimg;
+var winimg;
 
 function preload() {
     backgroundImg = loadImage("img/background.png");
@@ -110,6 +112,8 @@ function preload() {
     tank2img = loadImage("img/enemies/tankv2.png");
     knightswordimg = loadImage("img/knightsword.png");
     assassindaggerimg = loadImage("img/dagger.png");
+    deathimg = loadImage("img/death.png");
+    winimg = loadImage("img/win.png")
 
     tank3img = loadImage("img/enemies/tankv3.png");
     sprayer2img = loadImage("img/enemies/sprayerv2.png");
@@ -249,6 +253,13 @@ function setup() {
 }
 
 function draw() {
+    document.getElementById("defaultCanvas0").style.position = "absolute";
+    document.getElementById("defaultCanvas0").style.display = "block";
+    document.getElementById("defaultCanvas0").style.left = ((window.innerWidth - 1000) / 2) - 40 + "px";
+    document.getElementById("defaultCanvas0").style.top = ((window.innerHeight - 700) / 2) - 40 + "px";
+    document.getElementById("defaultCanvas0").style.border = "20px solid black";
+    document.getElementById("defaultCanvas0").style.borderRadius = "30px";
+    document.body.style.background = "#303030";
 
     for (var p of game.data) {
         if (p instanceof Projectile || p instanceof BombProjectile || p instanceof EnemyProjectile || p instanceof WaterGunProjectile || p instanceof BombEffect || p instanceof WaterEffect) {
@@ -269,9 +280,9 @@ function draw() {
         textSize(50);
         textStyle(BOLD);
         if (winning) {
-            text("You Won!", 300, 120, 400)
+            image(winimg, 0, 0, 1000, 700);
         } else {
-            text("You Died...", 300, 120, 400);
+            image(deathimg, 0, 0, 1000, 700);
         }
         textStyle(NORMAL);
         textSize(20);
