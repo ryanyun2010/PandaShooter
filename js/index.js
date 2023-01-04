@@ -272,7 +272,7 @@ function draw() {
     document.getElementById("defaultCanvas0").style.position = "absolute";
     document.getElementById("defaultCanvas0").style.display = "block";
     document.getElementById("defaultCanvas0").style.left = ((window.innerWidth - 1000) / 2) - 40 + "px";
-    document.getElementById("defaultCanvas0").style.top = ((window.innerHeight - 700) / 2) - 40 + "px";
+    document.getElementById("defaultCanvas0").style.top = "10px";
     // document.getElementById("defaultCanvas0").style.border = "20px solid black";
     document.getElementById("defaultCanvas0").style.borderRadius = "30px";
 
